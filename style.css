@@ -1,0 +1,399 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+:root {
+  --background: #080b12;
+  --panel: #121925;
+  --panel-light: #172131;
+  --border: #293548;
+  --text: #f4f7fb;
+  --muted: #8d98aa;
+  --green: #71e0b5;
+  --blue: #85c9ff;
+  --yellow: #d8e483;
+  --orange: #ffc873;
+  --red: #ff7e91;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: "Space Grotesk", sans-serif;
+  background:
+    radial-gradient(
+      circle at 15% 0%,
+      #172a45 0%,
+      transparent 38%
+    ),
+    var(--background);
+}
+
+.container {
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 55px 22px;
+}
+
+/* Header */
+
+.header {
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: var(--green);
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 3px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: clamp(42px, 8vw, 76px);
+  line-height: 1;
+}
+
+.header h1 span {
+  color: var(--green);
+}
+
+.subtitle {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+/* Rating guide */
+
+.rating-guide {
+  margin: 42px 0 25px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #101722;
+}
+
+.guide-title {
+  margin-bottom: 14px;
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.guide-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+}
+
+.guide-items div {
+  display: flex;
+  align-items: center;
+}
+
+/* Ratings */
+
+.rating,
+.player-grade {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 34px;
+  height: 27px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  color: #06100d;
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.aplus {
+  background: var(--green);
+}
+
+.a {
+  background: var(--blue);
+}
+
+.b {
+  background: var(--yellow);
+}
+
+.c {
+  background: var(--orange);
+}
+
+.f {
+  background: var(--red);
+}
+
+/* Leaderboard */
+
+.leaderboard {
+  display: grid;
+  gap: 14px;
+}
+
+.player-card {
+  display: grid;
+  grid-template-columns: 55px 250px 1fr 85px;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  background:
+    linear-gradient(
+      110deg,
+      var(--panel-light),
+      var(--panel)
+    );
+  box-shadow: 0 8px 30px rgb(0 0 0 / 18%);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.player-card:hover {
+  border-color: var(--green);
+  transform: translateY(-3px);
+}
+
+.rank {
+  color: var(--muted);
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Player information */
+
+.player-information {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.avatar {
+  width: 62px;
+  height: 62px;
+  flex-shrink: 0;
+  border: 2px solid #3a4a62;
+  border-radius: 14px;
+  object-fit: cover;
+  background: #263246;
+}
+
+.player-names {
+  min-width: 0;
+}
+
+.player-names h2 {
+  overflow: hidden;
+  margin: 0;
+  font-size: 17px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player-names p {
+  overflow: hidden;
+  margin: 5px 0 3px;
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player-names small {
+  color: #657287;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+}
+
+/* Stats */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.stat {
+  min-width: 60px;
+}
+
+.stat-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+}
+
+.stat-label span {
+  color: var(--text);
+}
+
+.bar {
+  width: 100%;
+  height: 6px;
+  margin-top: 9px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #2a3546;
+}
+
+.fill {
+  height: 100%;
+  border-radius: 99px;
+  background: var(--green);
+  transition: width 0.5s ease;
+}
+
+/* Overall score */
+
+.overall {
+  text-align: right;
+}
+
+.overall-score {
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.overall-label {
+  margin: 2px 0 5px;
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+}
+
+.loading,
+.error {
+  padding: 40px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.error {
+  color: var(--red);
+}
+
+/* Footer */
+
+.footer {
+  margin-top: 35px;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+.footer p {
+  margin: 7px 0;
+}
+
+/* Mobile design */
+
+@media (max-width: 800px) {
+  .player-card {
+    grid-template-columns: 42px 1fr 80px;
+    gap: 13px;
+    padding: 16px;
+  }
+
+  .player-information {
+    min-width: 0;
+  }
+
+  .stats {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    gap: 10px;
+  }
+
+  .overall {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .avatar {
+    width: 52px;
+    height: 52px;
+  }
+
+  .rank {
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    padding: 38px 12px;
+  }
+
+  .player-card {
+    grid-template-columns: 35px 1fr 67px;
+    gap: 9px;
+    padding: 13px 10px;
+  }
+
+  .player-names h2 {
+    font-size: 14px;
+  }
+
+  .player-names p {
+    font-size: 10px;
+  }
+
+  .player-names small {
+    font-size: 8px;
+  }
+
+  .avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+  }
+
+  .overall-score {
+    font-size: 23px;
+  }
+
+  .stats {
+    gap: 7px;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 9px;
+  }
+
+  .stat-label span {
+    display: block;
+    margin-top: 3px;
+  }
+
+  .guide-items {
+    gap: 10px;
+    font-size: 10px;
+  }
+}
