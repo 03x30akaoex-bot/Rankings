@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Roblox Speedrun Legends</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="container">
+
+    <header class="header">
+      <p class="eyebrow">ROBLOX SPEEDRUNNING</p>
+
+      <h1>
+        Speedrun <span>Legends</span>
+      </h1>
+
+      <p class="subtitle">
+        The leaderboard for the fastest and cleanest runners.
+      </p>
+    </header>
+
+    <section class="rating-guide">
+      <div class="guide-title">RATING GUIDE</div>
+
+      <div class="guide-items">
+        <div>
+          <strong class="rating aplus">A+</strong>
+          <span>9.5 - 10.0</span>
+        </div>
+
+        <div>
+          <strong class="rating a">A</strong>
+          <span>8.5 - 9.4</span>
+        </div>
+
+        <div>
+          <strong class="rating b">B</strong>
+          <span>7.0 - 8.4</span>
+        </div>
+
+        <div>
+          <strong class="rating c">C</strong>
+          <span>5.0 - 6.9</span>
+        </div>
+
+        <div>
+          <strong class="rating f">F</strong>
+          <span>0.0 - 4.9</span>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="leaderboard"
+      class="leaderboard"
+      aria-label="Roblox speedrun leaderboard"
+    >
+      <div class="loading">
+        Loading leaderboard...
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>
+        CC = Corner Cutting |
+        CAM = Camera Control |
+        BNC = Bounce |
+        CONS = Consistency
+      </p>
+
+      <p>
+        Player information and mugshots are loaded from Roblox.
+      </p>
+    </footer>
+
+  </main>
+
+  <!-- Put players.js before leaderboard.js -->
+  <script src="players.js"></script>
+  <script src="leaderboard.js"></script>
+</body>
+</html>
