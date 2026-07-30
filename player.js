@@ -8,8 +8,8 @@ const PlayerStats = (function() {
     // ----- PRIVATE CONFIGURATION -----
     // Default player settings - EDIT THESE VALUES AS NEEDED
     const DEFAULT_CONFIG = {
-        userId: 156,
-        username: "builderman",
+        userId: 1619886,
+        username: "haloman3333",
         ratings: {
             cc: 0,      // Close Combat rating (0-10.0)
             cam: 0,     // Camera/Camerawork rating (0-10.0)
