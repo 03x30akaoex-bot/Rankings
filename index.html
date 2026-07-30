@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>Roblox · player mugshot & ratings</title>
-  <!-- modern, clean interface with Roblox-inspired tones -->
   <style>
     * {
       margin: 0;
@@ -42,7 +41,6 @@
       transform: translateY(-3px);
     }
 
-    /* header with player id & username */
     .player-header {
       display: flex;
       flex-wrap: wrap;
@@ -77,12 +75,10 @@
       background-position: center;
       background-repeat: no-repeat;
       background-color: #2f3146;
-      /* fallback if image fails: show initial */
       position: relative;
       overflow: hidden;
     }
 
-    /* fallback avatar icon inside mugshot */
     .mugshot::before {
       content: "";
       position: absolute;
@@ -101,7 +97,6 @@
       text-shadow: 0 4px 8px black;
     }
 
-    /* if image loads it covers the pseudo elements */
     .mugshot img {
       position: relative;
       z-index: 2;
@@ -141,7 +136,6 @@
       word-break: break-word;
     }
 
-    /* rating categories grid */
     .ratings-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -196,7 +190,6 @@
       align-self: center;
     }
 
-    /* overall rating section */
     .overall-section {
       background: rgba(0, 0, 0, 0.45);
       backdrop-filter: blur(15px);
@@ -262,7 +255,6 @@
       }
     }
 
-    /* handle missing image gracefully */
     .mugshot img.hidden-fallback {
       display: none;
     }
@@ -270,11 +262,9 @@
 </head>
 <body>
   <div class="card">
-    <!-- Player mugshot, userid and username -->
     <div class="player-header">
       <div class="mugshot-frame">
         <div class="mugshot" id="mugshotContainer">
-          <!-- Roblox headshot image will be inserted via JS -->
           <img id="playerHeadshot" src="" alt="Player Mugshot" style="display: none;" crossorigin="anonymous">
         </div>
       </div>
@@ -284,7 +274,6 @@
       </div>
     </div>
 
-    <!-- 4 categories: cc / cam / cons / bnc with 0/10.0 rating -->
     <div class="ratings-grid">
       <div class="rating-category">
         <div class="category-label">cc</div>
@@ -304,7 +293,6 @@
       </div>
     </div>
 
-    <!-- Overall rating 0/10.0 -->
     <div class="overall-section">
       <span class="overall-label">OVERALL</span>
       <div class="overall-rating">
@@ -316,99 +304,7 @@
     </div>
   </div>
 
-  <script>
-    (function() {
-      // ----- ROBLOX PLAYER CONFIGURATION -----
-      // Using a well-known Roblox user: builderman (ID 156) 
-      // This guarantees a valid mugshot and recognizable profile.
-      const PLAYER_USER_ID = 156;
-      const PLAYER_USERNAME = "builderman";
-      
-      // Static ratings as requested: all categories 0/10.0, overall 0/10.0
-      // (You can modify these values to any number between 0 and 10.0)
-      const RATINGS = {
-        cc: 0,
-        cam: 0,
-        cons: 0,
-        bnc: 0
-      };
-      
-      // Overall rating calculated as average of the four categories (rounded to one decimal)
-      function computeOverall(cc, cam, cons, bnc) {
-        let sum = cc + cam + cons + bnc;
-        let avg = sum / 4;
-        return Math.round(avg * 10) / 10; // one decimal place
-      }
-
-      const overallRating = computeOverall(RATINGS.cc, RATINGS.cam, RATINGS.cons, RATINGS.bnc);
-
-      // ----- UPDATE DOM ELEMENTS -----
-      function updateUI() {
-        // Set user ID and username
-        document.getElementById('userIdDisplay').textContent = `ID: ${PLAYER_USER_ID}`;
-        document.getElementById('usernameDisplay').textContent = PLAYER_USERNAME;
-        
-        // Set category ratings
-        document.getElementById('ccRating').textContent = RATINGS.cc.toFixed(1);
-        document.getElementById('camRating').textContent = RATINGS.cam.toFixed(1);
-        document.getElementById('consRating').textContent = RATINGS.cons.toFixed(1);
-        document.getElementById('bncRating').textContent = RATINGS.bnc.toFixed(1);
-        
-        // Overall rating
-        document.getElementById('overallRatingValue').textContent = overallRating.toFixed(1);
-      }
-
-      // ----- LOAD ROBLOX MUGSHOT (headshot) -----
-      function loadPlayerHeadshot(userId) {
-        const mugshotContainer = document.getElementById('mugshotContainer');
-        const imgElement = document.getElementById('playerHeadshot');
-        
-        // Roblox headshot thumbnail API (reliable, official)
-        // Using format: https://www.roblox.com/headshot-thumbnail/image?userId=USERID&width=150&height=150&format=png
-        const headshotUrl = `https://www.roblox.com/headshot-thumbnail/image?userId=${userId}&width=150&height=150&format=png`;
-        
-        // Clear any previous state
-        imgElement.style.display = 'none';
-        imgElement.src = '';
-        
-        // Create a new image to test loading
-        const testImage = new Image();
-        testImage.crossOrigin = 'anonymous'; // avoid CORS issues for display
-        
-        testImage.onload = function() {
-          // Image loaded successfully
-          imgElement.src = headshotUrl;
-          imgElement.style.display = 'block';
-          // Hide the fallback pseudo-elements by covering them (image is on top)
-          // The mugshot container still shows pseudo elements but image covers them.
-        };
-        
-        testImage.onerror = function() {
-          // If image fails, keep fallback (pseudo elements remain visible)
-          imgElement.style.display = 'none';
-          console.warn('Roblox headshot failed to load, using fallback silhouette.');
-          // Optionally try a different format or leave as is.
-        };
-        
-        // Start loading
-        testImage.src = headshotUrl;
-        
-        // Set a timeout fallback: if image takes too long, keep fallback.
-        setTimeout(() => {
-          if (!testImage.complete || testImage.naturalWidth === 0) {
-            imgElement.style.display = 'none';
-          }
-        }, 4000);
-      }
-
-      // Initialize everything
-      updateUI();
-      loadPlayerHeadshot(PLAYER_USER_ID);
-      
-      // Additional: if you ever want to dynamically update ratings, you could expose functions.
-      // For now it's static as requested (0/10.0 ratings).
-      console.log('Roblox player card ready •', PLAYER_USERNAME, '• overall', overallRating);
-    })();
-  </script>
+  <!-- Link to external player.js -->
+  <script src="player.js"></script>
 </body>
 </html>
